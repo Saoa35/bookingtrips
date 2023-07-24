@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import briefcase from "../assets/images/briefcase.svg";
 import user from "../assets/images/user.svg";
 
@@ -5,24 +6,20 @@ export const Header = () => {
   return (
     <header className="header">
       <div className="header__inner">
-        <a
-          data-test-id="header-logo"
-          href="./index.html"
-          className="header__logo"
-        >
+        <Link to="/" data-test-id="header-logo" className="header__logo">
           Travel App
-        </a>
+        </Link>
         <nav data-test-id="header-nav" className="header__nav">
           <ul className="nav-header__list">
             <li className="nav-header__item" title="Bookings">
-              <a
+              <Link
+                to="/bookings"
                 data-test-id="header-bookings-link"
-                href="./bookings.html"
                 className="nav-header__inner"
               >
                 <span className="visually-hidden">Bookings</span>
                 <img src={briefcase} alt="bookings" />
-              </a>
+              </Link>
             </li>
             <li className="nav-header__item" title="Profile">
               <div
@@ -43,13 +40,13 @@ export const Header = () => {
                     John Doe
                   </li>
                   <li className="profile-nav__item">
-                    <a
+                    <Link
+                      to="sign-in"
                       data-test-id="header-profile-nav-sign-out"
-                      href="./sign-in.html"
                       className="profile-nav__sign-out button"
                     >
                       Sign Out
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>

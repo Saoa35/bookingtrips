@@ -12,6 +12,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/sign-up" element={<Registration />} />
         <Route path="/sign-in" element={<LogIn />} />
+        {/* <Route path="/bookings" element={<LogIn />} /> */}
+        {/* <Route path="/trip/:tripId " element={<LogIn />} /> */}
+        <Route path="*" element={<Home />} />
       </Routes>
     </>
   );
