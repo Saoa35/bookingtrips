@@ -23,7 +23,7 @@ function Registration() {
             data-test-id="auth-password"
             name="password"
             type="password"
-            autocomplete="new-password"
+            autoComplete="new-password"
             required
           />
         </label>
