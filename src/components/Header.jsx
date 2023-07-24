@@ -1,3 +1,6 @@
+import briefcase from "../assets/images/briefcase.svg";
+import user from "../assets/images/user.svg";
+
 export const Header = () => {
   return (
     <header className="header">
@@ -18,7 +21,7 @@ export const Header = () => {
                 className="nav-header__inner"
               >
                 <span className="visually-hidden">Bookings</span>
-                <img src="./assets/images/briefcase.svg" alt="bookings" />
+                <img src={briefcase} alt="bookings" />
               </a>
             </li>
             <li className="nav-header__item" title="Profile">
@@ -28,7 +31,7 @@ export const Header = () => {
                 tabIndex={0}
               >
                 <span className="visually-hidden">Profile</span>
-                <img src="./assets/images/user.svg" alt="profile" />
+                <img src={user} alt="profile" />
                 <ul
                   data-test-id="header-profile-nav-list"
                   className="profile-nav__list"
