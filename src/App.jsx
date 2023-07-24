@@ -4,11 +4,13 @@ import Home from "./pages/Home";
 import Registration from "./pages/Registration";
 import LogIn from "./pages/LogIn";
 import Bookings from "./pages/Bookings";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
     <>
       <Header />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/sign-up" element={<Registration />} />
@@ -17,6 +19,8 @@ function App() {
         {/* <Route path="/trip/:tripId " element={<LogIn />} /> */}
         <Route path="*" element={<Home />} />
       </Routes>
+
+      <Footer />
     </>
   );
 }
