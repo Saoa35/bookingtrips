@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function LogIn() {
   return (
     <main className="sign-in-page">
@@ -24,13 +26,13 @@ function LogIn() {
       </form>
       <span>
         Don't have an account?
-        <a
+        <Link
+          to="/sign-up"
           data-test-id="auth-sign-up-link"
-          href="./sign-up.html"
           className="sign-in-form__link"
         >
           Sign Up
-        </a>
+        </Link>
       </span>
     </main>
   );
