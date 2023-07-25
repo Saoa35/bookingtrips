@@ -11,11 +11,12 @@ function Registration({
   setUserName,
   setEmail,
   setPassword,
+  handleSubmit,
 }) {
   return (
     <main className="sign-up-page">
       <h1 className="visually-hidden">Travel App</h1>
-      <form className="sign-up-form" autoComplete="off">
+      <form className="sign-up-form" autoComplete="off" onSubmit={handleSubmit}>
         <h2 className="sign-up-form__title">Sign Up</h2>
         <UserNameInput {...{ userName, setUserName }} />
         <EmailInput {...{ email, setEmail }} />
