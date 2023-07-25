@@ -1,4 +1,4 @@
-export const UserNameInput = () => {
+export const UserNameInput = ({ userName, setUserName }) => {
   return (
     <label className="input">
       <span className="input__heading">Full name</span>
@@ -6,6 +6,8 @@ export const UserNameInput = () => {
         data-test-id="auth-full-name"
         name="full-name"
         type="text"
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
         required
       />
     </label>

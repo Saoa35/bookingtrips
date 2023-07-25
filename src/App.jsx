@@ -18,8 +18,25 @@ function App() {
 
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/sign-up" element={<Registration />} />
-        <Route path="/sign-in" element={<LogIn />} />
+        <Route
+          path="/sign-up"
+          element={
+            <Registration
+              {...{
+                userName,
+                email,
+                password,
+                setUserName,
+                setEmail,
+                setPassword,
+              }}
+            />
+          }
+        />
+        <Route
+          path="/sign-in"
+          element={<LogIn {...{ email, password, setEmail, setPassword }} />}
+        />
         <Route path="/bookings" element={<Bookings />} />
         {/* <Route path="/trip/:tripId " element={<LogIn />} /> */}
         <Route path="*" element={<Home />} />
