@@ -1,4 +1,11 @@
-export const Filtration = ({ setSearchInput, searchInput }) => {
+export const Filtration = ({
+  setSearchInput,
+  searchInput,
+  duration,
+  setDuration,
+  level,
+  setLevel,
+}) => {
   return (
     <section className="trips-filter">
       <h2 className="visually-hidden">Trips filter</h2>
@@ -16,7 +23,12 @@ export const Filtration = ({ setSearchInput, searchInput }) => {
         </label>
         <label className="select">
           <span className="visually-hidden">Search by duration</span>
-          <select data-test-id="filter-duration" name="duration">
+          <select
+            data-test-id="filter-duration"
+            name="duration"
+            value={duration}
+            onChange={(e) => setDuration(e.target.value)}
+          >
             <option value="">duration</option>
             <option value="0_x_5">&lt; 5 days</option>
             <option value="5_x_10">&lt; 10 days</option>
@@ -25,7 +37,12 @@ export const Filtration = ({ setSearchInput, searchInput }) => {
         </label>
         <label className="select">
           <span className="visually-hidden">Search by level</span>
-          <select data-test-id="filter-level" name="level">
+          <select
+            data-test-id="filter-level"
+            name="level"
+            value={level}
+            onChange={(e) => setLevel(e.target.value)}
+          >
             <option value="">level</option>
             <option value="easy">easy</option>
             <option value="moderate">moderate</option>
