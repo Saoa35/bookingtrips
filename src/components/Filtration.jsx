@@ -1,4 +1,4 @@
-export const Filtration = () => {
+export const Filtration = ({ setSearchInput, searchInput }) => {
   return (
     <section className="trips-filter">
       <h2 className="visually-hidden">Trips filter</h2>
@@ -10,6 +10,8 @@ export const Filtration = () => {
             name="search"
             type="search"
             placeholder="search by title"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)}
           />
         </label>
         <label className="select">

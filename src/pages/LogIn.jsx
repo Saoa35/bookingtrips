@@ -3,14 +3,14 @@ import { PasswordInput } from "../components/inputs/PasswordInout";
 import { EmailInput } from "../components/inputs/EmailInput";
 import { SubmitButton } from "../components/SubmitButton";
 
-function LogIn() {
+function LogIn({ email, password, setEmail, setPassword, handleSubmit }) {
   return (
     <main className="sign-in-page">
       <h1 className="visually-hidden">Travel App</h1>
-      <form className="sign-in-form" autoComplete="off">
+      <form className="sign-in-form" autoComplete="off" onSubmit={handleSubmit}>
         <h2 className="sign-in-form__title">Sign In</h2>
-        <EmailInput />
-        <PasswordInput />
+        <EmailInput {...{ email, setEmail }} />
+        <PasswordInput {...{ password, setPassword }} />
         <SubmitButton>Sign In</SubmitButton>
       </form>
       <span>

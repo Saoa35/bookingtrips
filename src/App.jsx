@@ -23,24 +23,30 @@ function App() {
   };
 
   useEffect(() => {
-    if (
-      userName.length > 0 &&
-      email.includes("@") &&
-      password.length > 3 &&
-      password.length < 20
-    ) {
+    if (password.length > 3 && password.length < 20 && email.includes("@")) {
       setIsAuth(true);
     } else {
       setIsAuth(false);
     }
-  }, [userName, email, password]);
+  }, [email, setIsAuth, password]);
 
   return (
     <>
       <Header />
 
       <Routes>
-        <Route path="/" element={isAuth ? <Home /> : <LogIn />} />
+        <Route
+          path="/"
+          element={
+            isAuth ? (
+              <Home />
+            ) : (
+              <LogIn
+                {...{ email, password, setEmail, setPassword, handleSubmit }}
+              />
+            )
+          }
+        />
         <Route
           path="/sign-up"
           element={
@@ -57,13 +63,10 @@ function App() {
             />
           }
         />
-        <Route
-          path="/sign-in"
-          element={<LogIn {...{ email, password, setEmail, setPassword }} />}
-        />
+        <Route path="/sign-in" element={<LogIn />} />
         <Route path="/bookings" element={<Bookings />} />
         {/* <Route path="/trip/:tripId " element={<LogIn />} /> */}
-        <Route path="*" element={isAuth ? <Home /> : <LogIn />} />
+        {/* <Route path="*" element={isAuth ? <Home /> : <LogIn />} /> */}
       </Routes>
 
       <Footer />
