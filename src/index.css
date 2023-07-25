@@ -393,6 +393,7 @@ select {
   justify-content: center;
   align-items: center;
   padding-bottom: 50px;
+  flex: 1;
 }
 
 .sign-up-form,
@@ -580,6 +581,7 @@ select {
 
 .bookings-page {
   padding: 60px 20px;
+  flex: 1;
 }
 
 .bookings__list {

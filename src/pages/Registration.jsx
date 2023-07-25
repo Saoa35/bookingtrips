@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { EmailInput } from "../components/EmailInput";
+import { PasswordInput } from "../components/PasswordInout";
 
 function Registration() {
   return (
@@ -15,20 +17,8 @@ function Registration() {
             required
           />
         </label>
-        <label className="input">
-          <span className="input__heading">Email</span>
-          <input data-test-id="auth-email" name="email" type="email" required />
-        </label>
-        <label className="input">
-          <span className="input__heading">Password</span>
-          <input
-            data-test-id="auth-password"
-            name="password"
-            type="password"
-            autoComplete="new-password"
-            required
-          />
-        </label>
+        <EmailInput />
+        <PasswordInput />
         <button data-test-id="auth-submit" className="button" type="submit">
           Sign Up
         </button>
