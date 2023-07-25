@@ -5,7 +5,7 @@ import Registration from "./pages/Registration";
 import LogIn from "./pages/LogIn";
 import Bookings from "./pages/Bookings";
 import { Footer } from "./components/Footer";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function App() {
   const [userName, setUserName] = useState("");
@@ -17,18 +17,13 @@ function App() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isAuth) {
-      navigate("/");
-    }
-  };
-
-  useEffect(() => {
     if (password.length > 3 && password.length < 20 && email.includes("@")) {
       setIsAuth(true);
+      navigate("/");
     } else {
       setIsAuth(false);
     }
-  }, [email, setIsAuth, password]);
+  };
 
   return (
     <>
@@ -63,10 +58,24 @@ function App() {
             />
           }
         />
-        <Route path="/sign-in" element={<LogIn />} />
+        <Route
+          path="/sign-in"
+          element={<LogIn {...{ email, password, setEmail, setPassword }} />}
+        />
         <Route path="/bookings" element={<Bookings />} />
         {/* <Route path="/trip/:tripId " element={<LogIn />} /> */}
-        {/* <Route path="*" element={isAuth ? <Home /> : <LogIn />} /> */}
+        <Route
+          path="*"
+          element={
+            isAuth ? (
+              <Home />
+            ) : (
+              <LogIn
+                {...{ email, password, setEmail, setPassword, handleSubmit }}
+              />
+            )
+          }
+        />
       </Routes>
 
       <Footer />

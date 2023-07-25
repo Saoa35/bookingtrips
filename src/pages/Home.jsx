@@ -15,7 +15,9 @@ function Home() {
         <ul className="trip-list">
           {trips &&
             trips
-              // .filter((el) => el.title === searchInput)
+              .filter((el) =>
+                el.title.toLowerCase().includes(searchInput.toLowerCase())
+              )
               .map((el) => <TripCard key={el.id} {...el} />)}
         </ul>
       </section>
