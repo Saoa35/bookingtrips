@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { PasswordInput } from "../components/PasswordInout";
-import { EmailInput } from "../components/EmailInput";
+import { PasswordInput } from "../components/inputs/PasswordInout";
+import { EmailInput } from "../components/inputs/EmailInput";
 import { SubmitButton } from "../components/SubmitButton";
 
 function LogIn() {

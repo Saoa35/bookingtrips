@@ -12,8 +12,6 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // const handleName
-
   return (
     <>
       <Header />

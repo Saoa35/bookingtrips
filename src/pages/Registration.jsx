@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
-import { EmailInput } from "../components/EmailInput";
-import { PasswordInput } from "../components/PasswordInout";
+import { EmailInput } from "../components/inputs/EmailInput";
+import { PasswordInput } from "../components/inputs/PasswordInout";
 import { SubmitButton } from "../components/SubmitButton";
-import { UserNameInput } from "../components/UserNameInput";
+import { UserNameInput } from "../components/inputs/UserNameInput";
 
 function Registration() {
   return (
