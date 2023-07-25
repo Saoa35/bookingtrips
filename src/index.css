@@ -393,7 +393,7 @@ select {
   justify-content: center;
   align-items: center;
   padding-bottom: 50px;
-  flex: 1;
+  flex-grow: 1;
 }
 
 .sign-up-form,

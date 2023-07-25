@@ -1,6 +1,6 @@
 import iceland from "../assets/images/iceland.jpg";
 
-function TripInfo() {
+function TripPage() {
   return (
     <main className="trip-page">
       <h1 className="visually-hidden">Travel App</h1>
@@ -64,4 +64,4 @@ function TripInfo() {
   );
 }
 
-export default TripInfo;
+export default TripPage;
