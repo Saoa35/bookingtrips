@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { PasswordInput } from "../components/PasswordInout";
 import { EmailInput } from "../components/EmailInput";
+import { SubmitButton } from "../components/SubmitButton";
 
 function LogIn() {
   return (
@@ -10,9 +11,7 @@ function LogIn() {
         <h2 className="sign-in-form__title">Sign In</h2>
         <EmailInput />
         <PasswordInput />
-        <button data-test-id="auth-submit" className="button" type="submit">
-          Sign In
-        </button>
+        <SubmitButton>Sign In</SubmitButton>
       </form>
       <span>
         Don't have an account?

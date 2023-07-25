@@ -5,8 +5,15 @@ import Registration from "./pages/Registration";
 import LogIn from "./pages/LogIn";
 import Bookings from "./pages/Bookings";
 import { Footer } from "./components/Footer";
+import { useState } from "react";
 
 function App() {
+  const [userName, setUserName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // const handleName
+
   return (
     <>
       <Header />

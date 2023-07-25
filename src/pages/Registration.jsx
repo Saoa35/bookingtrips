@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { EmailInput } from "../components/EmailInput";
 import { PasswordInput } from "../components/PasswordInout";
+import { SubmitButton } from "../components/SubmitButton";
+import { UserNameInput } from "../components/UserNameInput";
 
 function Registration() {
   return (
@@ -8,20 +10,10 @@ function Registration() {
       <h1 className="visually-hidden">Travel App</h1>
       <form className="sign-up-form" autoComplete="off">
         <h2 className="sign-up-form__title">Sign Up</h2>
-        <label className="input">
-          <span className="input__heading">Full name</span>
-          <input
-            data-test-id="auth-full-name"
-            name="full-name"
-            type="text"
-            required
-          />
-        </label>
+        <UserNameInput />
         <EmailInput />
         <PasswordInput />
-        <button data-test-id="auth-submit" className="button" type="submit">
-          Sign Up
-        </button>
+        <SubmitButton>Sign Up</SubmitButton>
       </form>
       <span>
         Already have an account?
