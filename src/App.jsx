@@ -27,7 +27,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header isAuth={isAuth} setIsAuth={setIsAuth} />
 
       <Routes>
         <Route
@@ -60,22 +60,15 @@ function App() {
         />
         <Route
           path="/sign-in"
-          element={<LogIn {...{ email, password, setEmail, setPassword }} />}
+          element={
+            <LogIn
+              {...{ email, password, setEmail, setPassword, handleSubmit }}
+            />
+          }
         />
         <Route path="/bookings" element={<Bookings />} />
         {/* <Route path="/trip/:tripId " element={<LogIn />} /> */}
-        <Route
-          path="*"
-          element={
-            isAuth ? (
-              <Home />
-            ) : (
-              <LogIn
-                {...{ email, password, setEmail, setPassword, handleSubmit }}
-              />
-            )
-          }
-        />
+        <Route path="*" element={<Home />} />
       </Routes>
 
       <Footer />
