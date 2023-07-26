@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const TripCard = ({
   id,
@@ -9,6 +9,13 @@ export const TripCard = ({
   price,
   setTripId,
 }) => {
+  const navigate = useNavigate();
+
+  const handleTripClick = () => {
+    setTripId(id);
+    navigate(`/trip/${id}`);
+  };
+
   return (
     <li data-test-id="trip-card" className="trip-card">
       <img data-test-id="trip-card-image" src={image} alt="trip" />
@@ -43,7 +50,7 @@ export const TripCard = ({
         to={`/trip/${id}`}
         data-test-id="trip-card-link"
         className="button"
-        onClick={() => setTripId(id)}
+        onClick={handleTripClick}
       >
         Discover a trip
       </Link>

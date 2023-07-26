@@ -17,8 +17,6 @@ function App() {
 
   const navigate = useNavigate();
 
-  console.log(tripId);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (password.length > 3 && password.length < 20 && email.includes("@")) {
@@ -72,7 +70,7 @@ function App() {
         />
         <Route path="/bookings" element={<Bookings />} />
         <Route path="/trip/:tripId " element={<TripPage tripId={tripId} />} />
-        <Route path="*" element={<Navigate to={"/"} />} />
+        {/* <Route path="*" element={<Home />} /> */}
       </Routes>
 
       <Footer />
