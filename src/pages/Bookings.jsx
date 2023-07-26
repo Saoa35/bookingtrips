@@ -6,7 +6,10 @@ function Bookings() {
     <main className="bookings-page">
       <h1 className="visually-hidden">Travel App</h1>
       <ul className="bookings__list">
-        {bookings && bookings.map((el) => <BookingCard key={el.id} {...el} />)}
+        {bookings &&
+          bookings
+            .sort((a, b) => new Date(a.date) - new Date(b.date))
+            .map((el) => <BookingCard key={el.id} {...el} />)}
       </ul>
     </main>
   );
