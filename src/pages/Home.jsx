@@ -1,5 +1,5 @@
 import { Filtration } from "../components/Filtration";
-import { TripCard } from "../components/TripCard";
+import { TripCard } from "../components/cards/TripCard";
 import trips from "../assets/data/trips.json";
 import { useState } from "react";
 
