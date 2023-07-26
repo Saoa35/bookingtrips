@@ -12,7 +12,7 @@ export const TripCard = ({
   const navigate = useNavigate();
 
   const handleTripClick = () => {
-    setTripId(id);
+    // setTripId(id);
     navigate(`/trip/${id}`);
   };
 

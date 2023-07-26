@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Header } from "./components/Header";
 import Home from "./pages/Home";
 import Registration from "./pages/Registration";
@@ -13,7 +13,7 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isAuth, setIsAuth] = useState(false);
-  const [tripId, setTripId] = useState(null);
+  const [tripId, setTripId] = useState("");
 
   const navigate = useNavigate();
 
@@ -69,7 +69,7 @@ function App() {
           }
         />
         <Route path="/bookings" element={<Bookings />} />
-        <Route path="/trip/:tripId " element={<TripPage tripId={tripId} />} />
+        <Route path="/trip/:tripId " element={<TripPage />} />
         {/* <Route path="*" element={<Home />} /> */}
       </Routes>
 

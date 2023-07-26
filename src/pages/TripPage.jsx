@@ -1,8 +1,13 @@
+import { useParams } from "react-router-dom";
 import trips from "../assets/data/trips.json";
 
-function TripPage({ tripId }) {
+function TripPage() {
+  const { tripId } = useParams();
+
   const trip = trips.find((el) => el.id === tripId);
 
+  console.log(trips);
+  console.log(tripId);
   console.log(trip);
 
   return (
