@@ -1,4 +1,11 @@
-export const BookingCard = ({ title, guests, date, totalPrice }) => {
+export const BookingCard = ({
+  id,
+  title,
+  guests,
+  date,
+  totalPrice,
+  bookingDelete,
+}) => {
   const reformatDate = (dateString) => {
     const [datePart] = dateString.split("T");
     const [year, month, day] = datePart.split("-");
@@ -21,6 +28,7 @@ export const BookingCard = ({ title, guests, date, totalPrice }) => {
         {totalPrice} $
       </span>
       <button
+        onClick={() => bookingDelete(id)}
         data-test-id="booking-cancel"
         className="booking__cancel"
         title="Cancel booking"
