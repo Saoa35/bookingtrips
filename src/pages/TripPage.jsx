@@ -1,13 +1,20 @@
-import { useParams } from "react-router-dom";
 import trips from "../assets/data/trips.json";
+import { useEffect } from "react";
+import useRouter from "../hooks/useRouter ";
 
 function TripPage() {
-  const { tripId } = useParams();
+  const { query, navigate } = useRouter();
 
-  const trip = trips.find((el) => el.id === tripId);
+  const trip = trips.find((el) => el.id === query.id);
+
+  useEffect(() => {
+    if (!trip) {
+      navigate("/");
+    }
+  }, [navigate, trip]);
 
   console.log(trips);
-  console.log(tripId);
+  console.log(query.id);
   console.log(trip);
 
   return (

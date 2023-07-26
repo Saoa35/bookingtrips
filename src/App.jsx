@@ -13,7 +13,6 @@ function App() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isAuth, setIsAuth] = useState(false);
-  const [tripId, setTripId] = useState("");
 
   const navigate = useNavigate();
 
@@ -36,7 +35,7 @@ function App() {
           path="/"
           element={
             isAuth ? (
-              <Home setTripId={setTripId} />
+              <Home />
             ) : (
               <LogIn
                 {...{ email, password, setEmail, setPassword, handleSubmit }}
