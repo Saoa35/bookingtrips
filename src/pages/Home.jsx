@@ -37,8 +37,6 @@ function Home() {
     }
   }
 
-  console.log(level);
-
   return (
     <main>
       <h1 className="visually-hidden">Travel App</h1>
