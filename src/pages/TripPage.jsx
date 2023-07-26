@@ -1,13 +1,15 @@
-import iceland from "../assets/images/iceland.jpg";
+import trips from "../assets/data/trips.json";
 
 function TripPage() {
+  // const trip = trips.find(el =>  el.id === )
+
   return (
     <main className="trip-page">
       <h1 className="visually-hidden">Travel App</h1>
       <div className="trip">
         <img
           data-test-id="trip-details-image"
-          src={iceland}
+          // src={iceland}
           className="trip__img"
           alt="trip"
         />

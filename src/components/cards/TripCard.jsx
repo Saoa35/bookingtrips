@@ -1,4 +1,14 @@
-export const TripCard = ({ image, title, duration, level, price }) => {
+import { Link } from "react-router-dom";
+
+export const TripCard = ({
+  id,
+  image,
+  title,
+  duration,
+  level,
+  price,
+  setTripId,
+}) => {
   return (
     <li data-test-id="trip-card" className="trip-card">
       <img data-test-id="trip-card-image" src={image} alt="trip" />
@@ -29,9 +39,14 @@ export const TripCard = ({ image, title, duration, level, price }) => {
           </strong>
         </div>
       </div>
-      <a data-test-id="trip-card-link" href="./trip.html" className="button">
+      <Link
+        to={`/trip/${id}`}
+        data-test-id="trip-card-link"
+        className="button"
+        onClick={() => setTripId(id)}
+      >
         Discover a trip
-      </a>
+      </Link>
     </li>
   );
 };

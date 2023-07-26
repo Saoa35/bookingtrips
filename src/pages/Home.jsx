@@ -3,7 +3,7 @@ import { TripCard } from "../components/cards/TripCard";
 import trips from "../assets/data/trips.json";
 import { useState } from "react";
 
-function Home() {
+function Home({ setTripId }) {
   const [searchInput, setSearchInput] = useState("");
   const [duration, setDuration] = useState("");
   const [level, setLevel] = useState("");
@@ -58,7 +58,9 @@ function Home() {
               .filter((el) => tripSearch(searchInput, el))
               .filter((el) => filterDuration(duration, el))
               .filter((el) => filterLevel(level, el))
-              .map((el) => <TripCard key={el.id} {...el} />)}
+              .map((el) => (
+                <TripCard key={el.id} {...el} setTripId={setTripId} />
+              ))}
         </ul>
       </section>
     </main>
