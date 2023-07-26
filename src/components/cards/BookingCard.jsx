@@ -1,4 +1,11 @@
-export const BookingCard = ({ title, guests, createdAt, totalPrice }) => {
+export const BookingCard = ({ title, guests, date, totalPrice }) => {
+  const reformatDate = (dateString) => {
+    const [datePart] = dateString.split("T");
+    const [year, month, day] = datePart.split("-");
+    const formattedDate = `${day}.${month}.${year}`;
+    return formattedDate;
+  };
+
   return (
     <li data-test-id="booking" className="booking">
       <h3 data-test-id="booking-title" className="booking__title">
@@ -8,7 +15,7 @@ export const BookingCard = ({ title, guests, createdAt, totalPrice }) => {
         {guests} guests
       </span>
       <span data-test-id="booking-date" className="booking__date">
-        {createdAt}
+        {reformatDate(date)}
       </span>
       <span data-test-id="booking-total" className="booking__total">
         {totalPrice} $
