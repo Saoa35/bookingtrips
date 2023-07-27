@@ -1,6 +1,6 @@
 export const BookingCard = ({
   id,
-  title,
+  trip,
   guests,
   date,
   totalPrice,
@@ -16,7 +16,7 @@ export const BookingCard = ({
   return (
     <li data-test-id="booking" className="booking">
       <h3 data-test-id="booking-title" className="booking__title">
-        {title}
+        {trip.title}
       </h3>
       <span data-test-id="booking-guests" className="booking__guests">
         {guests} guests
