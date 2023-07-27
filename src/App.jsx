@@ -68,7 +68,7 @@ function App() {
           }
         />
         <Route path="/bookings" element={<Bookings />} />
-        <Route path="/trip/:tripId " element={<TripPage />} />
+        <Route path="/trip/:id " element={<TripPage />} />
         {/* <Route path="*" element={<Home />} /> */}
       </Routes>
 
