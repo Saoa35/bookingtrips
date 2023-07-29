@@ -1,8 +1,9 @@
 import { useEffect } from "react";
 import useRouter from "../hooks/useRouter ";
 import trips from "../assets/data/trips.json";
-
 import React from "react";
+
+// console.log(trips);
 
 function TripPage() {
   // const { query, navigate } = useRouter();
