@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import briefcase from "../assets/images/briefcase.svg";
-import user from "../assets/images/user.svg";
+import briefcase from "../../assets/images/briefcase.svg";
+import user from "../../assets/images/user.svg";
 
 export const Header = ({ isAuth, setIsAuth }) => {
   return (

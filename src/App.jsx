@@ -1,10 +1,10 @@
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { Header } from "./components/Header";
+import { Header } from "./components/common/Header";
 import Home from "./pages/Home";
 import Registration from "./pages/Registration";
 import LogIn from "./pages/LogIn";
 import Bookings from "./pages/Bookings";
-import { Footer } from "./components/Footer";
+import { Footer } from "./components/common/Footer";
 import { useState } from "react";
 import TripPage from "./pages/TripPage";
 
@@ -68,7 +68,7 @@ function App() {
           }
         />
         <Route path="/bookings" element={<Bookings />} />
-        <Route path="/trip/:id " element={<TripPage />} />
+        <Route path="/trip/:id" element={<TripPage />} />
         {/* <Route path="*" element={<Home />} /> */}
       </Routes>
 

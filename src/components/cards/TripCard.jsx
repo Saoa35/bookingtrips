@@ -31,7 +31,7 @@ export const TripCard = ({ id, image, title, duration, level, price }) => {
           </strong>
         </div>
       </div>
-      <Link to={`trip/${id}`} data-test-id="trip-card-link" className="button">
+      <Link to={`/trip/${id}`} data-test-id="trip-card-link" className="button">
         Discover a trip
       </Link>
     </li>
