@@ -1,4 +1,9 @@
-export const UserNameInput = ({ userName, setUserName }) => {
+import { useDispatch } from "react-redux";
+import { setFullName } from "../../redux/slices/userSlice";
+
+export const UserNameInput = () => {
+  const dispatch = useDispatch();
+
   return (
     <label className="input">
       <span className="input__heading">Full name</span>
@@ -6,8 +11,7 @@ export const UserNameInput = ({ userName, setUserName }) => {
         data-test-id="auth-full-name"
         name="full-name"
         type="text"
-        value={userName}
-        onChange={(e) => setUserName(e.target.value)}
+        onChange={(e) => dispatch(setFullName(e.target.value))}
         required
       />
     </label>

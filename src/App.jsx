@@ -10,7 +10,6 @@ import TripPage from "./pages/TripPage";
 import bookings from "./assets/data/bookings.json";
 
 function App() {
-  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isAuth, setIsAuth] = useState(false);
@@ -68,10 +67,8 @@ function App() {
           element={
             <Registration
               {...{
-                userName,
                 email,
                 password,
-                setUserName,
                 setEmail,
                 setPassword,
                 handleSubmit,

@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import briefcase from "../../assets/images/briefcase.svg";
 import user from "../../assets/images/user.svg";
+import { useSelector } from "react-redux";
 
 export const Header = ({ isAuth, setIsAuth }) => {
+  const userName = useSelector((state) => state.user.fullName);
+
   return (
     <header className="header">
       <div className="header__inner">
@@ -38,7 +41,7 @@ export const Header = ({ isAuth, setIsAuth }) => {
                       data-test-id="header-profile-nav-username"
                       className="profile-nav__item profile-nav__username"
                     >
-                      John Doe
+                      {userName}
                     </li>
                     <li className="profile-nav__item">
                       <Link
