@@ -1,10 +1,6 @@
-import { useState } from "react";
-import bookings from "../assets/data/bookings.json";
 import { BookingCard } from "../components/cards/BookingCard";
 
-function Bookings() {
-  const [bookingList, setBookingList] = useState(bookings);
-
+function Bookings({ bookingList, setBookingList }) {
   const bookingDelete = (id) => {
     const updatedBookingList = bookingList.filter(
       (booking) => booking.id !== id

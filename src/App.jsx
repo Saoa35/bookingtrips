@@ -7,12 +7,32 @@ import Bookings from "./pages/Bookings";
 import { Footer } from "./components/common/Footer";
 import { useState } from "react";
 import TripPage from "./pages/TripPage";
+import bookings from "./assets/data/bookings.json";
 
 function App() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isAuth, setIsAuth] = useState(false);
+
+  const [bookingList, setBookingList] = useState(bookings);
+
+  const createNewBooking = (
+    booking,
+    modalTripTitle,
+    modalGuests,
+    modalTotalPrice,
+    modalDate,
+    modalId
+  ) => {
+    booking.trip.title = modalTripTitle;
+    booking.guests = modalGuests;
+    booking.totalPrice = modalTotalPrice;
+    booking.date = modalDate;
+    booking.id = modalId;
+
+    setBookingList([...bookingList, booking]);
+  };
 
   const navigate = useNavigate();
 
@@ -67,8 +87,19 @@ function App() {
             />
           }
         />
-        <Route path="/bookings" element={<Bookings />} />
-        <Route path="/trip/:id" element={<TripPage />} />
+        <Route
+          path="/bookings"
+          element={
+            <Bookings
+              bookingList={bookingList}
+              setBookingList={setBookingList}
+            />
+          }
+        />
+        <Route
+          path="/trip/:id"
+          element={<TripPage createNewBooking={createNewBooking} />}
+        />
         {/* <Route path="*" element={<Home />} /> */}
       </Routes>
 

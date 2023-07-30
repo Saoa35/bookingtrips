@@ -1,11 +1,27 @@
 import { useState } from "react";
 
-export const Modal = ({ handleModalClose, trip }) => {
+export const Modal = ({ handleModalClose, trip, createNewBooking }) => {
   const [guestsQuantity, setGuestsQuantity] = useState("1");
   const todaysDate = new Date().toISOString().split("T")[0];
   const [bookDate, setBookDate] = useState(todaysDate);
 
   let totalPrice = trip.price * guestsQuantity;
+
+  const newBooking = {
+    id: "",
+    trip: {
+      title: "",
+    },
+    guests: "",
+    totalPrice: "",
+    date: "",
+  };
+
+  function convertDateFormat(inputDate) {
+    const formattedTime = "T14:37:00.049Z";
+    const result = `${inputDate}${formattedTime}`;
+    return result;
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +30,14 @@ export const Modal = ({ handleModalClose, trip }) => {
       guestsQuantity > 0 &&
       guestsQuantity <= 10
     ) {
+      createNewBooking(
+        newBooking,
+        trip.title,
+        guestsQuantity,
+        totalPrice,
+        convertDateFormat(bookDate),
+        trip.id
+      );
       handleModalClose();
     }
   };

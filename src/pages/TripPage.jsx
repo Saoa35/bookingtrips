@@ -4,7 +4,7 @@ import trips from "../assets/data/trips.json";
 import React from "react";
 import { Modal } from "../components/Modal";
 
-function TripPage() {
+function TripPage({ createNewBooking }) {
   const { query, navigate } = useRouter();
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
@@ -85,7 +85,13 @@ function TripPage() {
         </div>
       </main>
 
-      {modalIsOpen && <Modal handleModalClose={handleModalClose} trip={trip} />}
+      {modalIsOpen && (
+        <Modal
+          handleModalClose={handleModalClose}
+          trip={trip}
+          createNewBooking={createNewBooking}
+        />
+      )}
     </>
   );
 }
