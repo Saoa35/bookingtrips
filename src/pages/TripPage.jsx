@@ -9,8 +9,12 @@ function TripPage() {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
-  const handleModalClick = () => {
+  const handleModalOpen = () => {
     setModalIsOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setModalIsOpen(false);
   };
 
   const trip = trips.find((el) => el.id === query.id);
@@ -73,14 +77,15 @@ function TripPage() {
             <button
               data-test-id="trip-details-button"
               className="trip__button button"
-              onClick={() => handleModalClick()}
+              onClick={() => handleModalOpen()}
             >
               Book a trip
             </button>
           </div>
         </div>
       </main>
-      {modalIsOpen && <Modal />}
+
+      {modalIsOpen && <Modal handleModalClose={handleModalClose} />}
     </>
   );
 }

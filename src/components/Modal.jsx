@@ -1,8 +1,9 @@
-export const Modal = () => {
+export const Modal = ({ handleModalClose }) => {
   return (
     <div className="modal">
       <div data-test-id="book-trip-popup" className="book-trip-popup">
         <button
+          onClick={() => handleModalClose()}
           data-test-id="book-trip-popup-close"
           className="book-trip-popup__close"
         >
