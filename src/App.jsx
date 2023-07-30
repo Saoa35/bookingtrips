@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Header } from "./components/common/Header";
 import Home from "./pages/Home";
 import Registration from "./pages/Registration";
@@ -10,9 +10,7 @@ import TripPage from "./pages/TripPage";
 import bookings from "./assets/data/bookings.json";
 
 function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isAuth, setIsAuth] = useState(false);
+  const [isAuth, setIsAuth] = useState(true);
 
   const [bookingList, setBookingList] = useState(bookings);
 
@@ -33,57 +31,14 @@ function App() {
     setBookingList([...bookingList, booking]);
   };
 
-  const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (password.length > 3 && password.length < 20 && email.includes("@")) {
-      setIsAuth(true);
-      navigate("/");
-    } else {
-      setIsAuth(false);
-    }
-  };
-
   return (
     <>
       <Header isAuth={isAuth} setIsAuth={setIsAuth} />
 
       <Routes>
-        <Route
-          path="/"
-          element={
-            isAuth ? (
-              <Home />
-            ) : (
-              <LogIn
-                {...{ email, password, setEmail, setPassword, handleSubmit }}
-              />
-            )
-          }
-        />
-        <Route
-          path="/sign-up"
-          element={
-            <Registration
-              {...{
-                email,
-                password,
-                setEmail,
-                setPassword,
-                handleSubmit,
-              }}
-            />
-          }
-        />
-        <Route
-          path="/sign-in"
-          element={
-            <LogIn
-              {...{ email, password, setEmail, setPassword, handleSubmit }}
-            />
-          }
-        />
+        <Route path="/" element={isAuth ? <Home /> : <LogIn />} />
+        <Route path="/sign-up" element={<Registration />} />
+        <Route path="/sign-in" element={<LogIn />} />
         <Route
           path="/bookings"
           element={

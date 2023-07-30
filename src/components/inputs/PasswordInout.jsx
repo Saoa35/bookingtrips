@@ -1,4 +1,8 @@
+import { useDispatch } from "react-redux";
+
 export const PasswordInput = ({ password, setPassword }) => {
+  const dispatch = useDispatch();
+
   return (
     <label className="input">
       <span className="input__heading">Password</span>
@@ -7,8 +11,7 @@ export const PasswordInput = ({ password, setPassword }) => {
         name="password"
         type="password"
         autoComplete="new-password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={(e) => dispatch(setPassword(e.target.value))}
         required
       />
     </label>

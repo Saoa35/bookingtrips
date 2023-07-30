@@ -1,4 +1,9 @@
-export const EmailInput = ({ email, setEmail }) => {
+import { useDispatch } from "react-redux";
+import { setEmail } from "../../redux/slices/userSlice";
+
+export const EmailInput = () => {
+  const dispatch = useDispatch();
+
   return (
     <label className="input">
       <span className="input__heading">Email</span>
@@ -6,8 +11,7 @@ export const EmailInput = ({ email, setEmail }) => {
         data-test-id="auth-email"
         name="email"
         type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => dispatch(setEmail(e.target.value))}
         required
       />
     </label>

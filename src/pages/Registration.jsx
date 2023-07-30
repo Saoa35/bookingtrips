@@ -1,26 +1,33 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { EmailInput } from "../components/inputs/EmailInput";
 import { PasswordInput } from "../components/inputs/PasswordInout";
 import { SubmitButton } from "../components/SubmitButton";
 import { UserNameInput } from "../components/inputs/UserNameInput";
+import { useSelector } from "react-redux";
 
-function Registration({
-  userName,
-  email,
-  password,
-  setUserName,
-  setEmail,
-  setPassword,
-  handleSubmit,
-}) {
+function Registration() {
+  const navigate = useNavigate();
+
+  const email = useSelector((state) => state.user.email);
+  const password = useSelector((state) => state.user.password);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password.length > 3 && password.length < 20 && email.includes("@")) {
+      // setIsAuth(true);
+      navigate("/");
+    } else {
+      // setIsAuth(false);
+    }
+  };
   return (
     <main className="sign-up-page">
       <h1 className="visually-hidden">Travel App</h1>
       <form className="sign-up-form" autoComplete="off" onSubmit={handleSubmit}>
         <h2 className="sign-up-form__title">Sign Up</h2>
-        <UserNameInput {...{ userName, setUserName }} />
-        <EmailInput {...{ email, setEmail }} />
-        <PasswordInput {...{ password, setPassword }} />
+        <UserNameInput />
+        <EmailInput />
+        <PasswordInput />
         <SubmitButton>Sign Up</SubmitButton>
       </form>
       <span>
