@@ -85,7 +85,7 @@ function TripPage() {
         </div>
       </main>
 
-      {modalIsOpen && <Modal handleModalClose={handleModalClose} />}
+      {modalIsOpen && <Modal handleModalClose={handleModalClose} trip={trip} />}
     </>
   );
 }

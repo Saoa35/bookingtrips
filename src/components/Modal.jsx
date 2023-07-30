@@ -1,4 +1,11 @@
-export const Modal = ({ handleModalClose }) => {
+import { useState } from "react";
+
+export const Modal = ({ handleModalClose, trip }) => {
+  const [bookDate, setBookDate] = useState("");
+  const [guestsQuantity, setGuestsQuantity] = useState("1");
+
+  let totalPrice = trip.price * guestsQuantity;
+
   return (
     <div className="modal">
       <div data-test-id="book-trip-popup" className="book-trip-popup">
@@ -9,26 +16,26 @@ export const Modal = ({ handleModalClose }) => {
         >
           ×
         </button>
-        <form className="book-trip-popup__form" autocomplete="off">
+        <form className="book-trip-popup__form" autoComplete="off">
           <div className="trip-info">
             <h3
               data-test-id="book-trip-popup-title"
               className="trip-info__title"
             >
-              Iceland
+              {trip.title}
             </h3>
             <div className="trip-info__content">
               <span
                 data-test-id="book-trip-popup-duration"
                 className="trip-info__duration"
               >
-                <strong>15</strong> days
+                <strong>{trip.duration}</strong> days
               </span>
               <span
                 data-test-id="book-trip-popup-level"
                 className="trip-info__level"
               >
-                easy
+                {trip.level}
               </span>
             </div>
           </div>
@@ -38,6 +45,8 @@ export const Modal = ({ handleModalClose }) => {
               data-test-id="book-trip-popup-date"
               name="date"
               type="date"
+              value={bookDate}
+              onChange={(e) => setBookDate(e.target.value)}
               required
             />
           </label>
@@ -49,7 +58,8 @@ export const Modal = ({ handleModalClose }) => {
               type="number"
               min="1"
               max="10"
-              value="1"
+              value={guestsQuantity}
+              onChange={(e) => setGuestsQuantity(e.target.value)}
               required
             />
           </label>
@@ -59,7 +69,7 @@ export const Modal = ({ handleModalClose }) => {
               data-test-id="book-trip-popup-total-value"
               className="book-trip-popup__total-value"
             >
-              4000$
+              {totalPrice}$
             </output>
           </span>
           <button
