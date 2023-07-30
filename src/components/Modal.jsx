@@ -1,10 +1,22 @@
 import { useState } from "react";
 
 export const Modal = ({ handleModalClose, trip }) => {
-  const [bookDate, setBookDate] = useState("");
   const [guestsQuantity, setGuestsQuantity] = useState("1");
+  const todaysDate = new Date().toISOString().split("T")[0];
+  const [bookDate, setBookDate] = useState(todaysDate);
 
   let totalPrice = trip.price * guestsQuantity;
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (
+      new Date(bookDate).getTime() >= new Date(todaysDate).getTime() &&
+      guestsQuantity > 0 &&
+      guestsQuantity <= 10
+    ) {
+      handleModalClose();
+    }
+  };
 
   return (
     <div className="modal">
@@ -16,7 +28,11 @@ export const Modal = ({ handleModalClose, trip }) => {
         >
           ×
         </button>
-        <form className="book-trip-popup__form" autoComplete="off">
+        <form
+          className="book-trip-popup__form"
+          autoComplete="off"
+          onSubmit={handleSubmit}
+        >
           <div className="trip-info">
             <h3
               data-test-id="book-trip-popup-title"
@@ -47,6 +63,7 @@ export const Modal = ({ handleModalClose, trip }) => {
               type="date"
               value={bookDate}
               onChange={(e) => setBookDate(e.target.value)}
+              min={todaysDate}
               required
             />
           </label>
