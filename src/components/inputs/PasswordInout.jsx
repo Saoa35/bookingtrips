@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
+import { setPassword } from "../../redux/slices/userSlice";
 
-export const PasswordInput = ({ password, setPassword }) => {
+export const PasswordInput = () => {
   const dispatch = useDispatch();
 
   return (

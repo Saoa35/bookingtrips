@@ -1,4 +1,12 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
+
+// export const signUp = createAsyncThunk(
+//   "user/signUp",
+//   async (userData, { rejectWithValue }) => {
+//     await axios.post("https://binary-travel-app.xyz/api/v1/auth/sign-up");
+//   }
+// );
 
 const initialState = {
   fullName: "",

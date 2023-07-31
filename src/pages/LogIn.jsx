@@ -1,16 +1,31 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PasswordInput } from "../components/inputs/PasswordInout";
 import { EmailInput } from "../components/inputs/EmailInput";
 import { SubmitButton } from "../components/SubmitButton";
+import { useSelector } from "react-redux";
 
-function LogIn({ email, password, setEmail, setPassword, handleSubmit }) {
+function LogIn() {
+  const navigate = useNavigate();
+
+  const email = useSelector((state) => state.user.email);
+  const password = useSelector((state) => state.user.password);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password.length > 3 && password.length < 20 && email.includes("@")) {
+      // setIsAuth(true);
+      navigate("/");
+    } else {
+      // setIsAuth(false);
+    }
+  };
   return (
     <main className="sign-in-page">
       <h1 className="visually-hidden">Travel App</h1>
       <form className="sign-in-form" autoComplete="off" onSubmit={handleSubmit}>
         <h2 className="sign-in-form__title">Sign In</h2>
-        <EmailInput {...{ email, setEmail }} />
-        <PasswordInput {...{ password, setPassword }} />
+        <EmailInput />
+        <PasswordInput />
         <SubmitButton>Sign In</SubmitButton>
       </form>
       <span>
