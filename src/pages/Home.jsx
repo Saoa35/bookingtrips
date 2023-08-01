@@ -1,12 +1,22 @@
+import { useDispatch } from "react-redux";
 import { Filtration } from "../components/Filtration";
 import { TripCard } from "../components/cards/TripCard";
-import trips from "../assets/data/trips.json";
-import { useState } from "react";
+// import trips from "../assets/data/trips.json";
+import { useEffect, useState } from "react";
+import { getAllTrips } from "../redux/slices/tripsSlice";
 
 function Home() {
   const [searchInput, setSearchInput] = useState("");
   const [duration, setDuration] = useState("");
   const [level, setLevel] = useState("");
+
+  const dispatch = useDispatch();
+
+  let trips;
+
+  useEffect(() => {
+    trips = dispatch(getAllTrips());
+  }, []);
 
   const tripSearch = (searchValue, tripName) =>
     tripName.title.toLowerCase().includes(searchValue.toLowerCase());
@@ -53,12 +63,13 @@ function Home() {
       <section className="trips">
         <h2 className="visually-hidden">Trips List</h2>
         <ul className="trip-list">
-          {trips &&
-            trips
-              .filter((el) => tripSearch(searchInput, el))
-              .filter((el) => filterDuration(duration, el))
-              .filter((el) => filterLevel(level, el))
-              .map((el) => <TripCard key={el.id} {...el} />)}
+          {trips
+            ?.filter((el) => tripSearch(searchInput, el))
+            .filter((el) => filterDuration(duration, el))
+            .filter((el) => filterLevel(level, el))
+            .map((el) => (
+              <TripCard key={el.id} {...el} />
+            ))}
         </ul>
       </section>
     </main>
