@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Filtration } from "../components/Filtration";
 import { TripCard } from "../components/cards/TripCard";
 // import trips from "../assets/data/trips.json";
@@ -12,11 +12,11 @@ function Home() {
 
   const dispatch = useDispatch();
 
-  let trips;
+  const trips = useSelector((state) => state.trips.trips);
 
   useEffect(() => {
-    trips = dispatch(getAllTrips());
-  }, []);
+    dispatch(getAllTrips());
+  }, [dispatch]);
 
   const tripSearch = (searchValue, tripName) =>
     tripName.title.toLowerCase().includes(searchValue.toLowerCase());

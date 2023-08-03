@@ -1,12 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// export const signUp = createAsyncThunk(
-//   "user/signUp",
-//   async (userData, { rejectWithValue }) => {
-//     await axios.post("https://binary-travel-app.xyz/api/v1/auth/sign-up");
-//   }
-// );
+export const signUp = createAsyncThunk(
+  "user/signUp",
+  async (fullName, email, password) => {
+    return await axios.post(
+      "https://binary-travel-app.xyz/api/v1/auth/sign-up",
+      { fullName, email, password }
+    );
+  }
+);
 
 const initialState = {
   fullName: "",
@@ -28,6 +31,7 @@ export const userSlice = createSlice({
       state.password = action.payload;
     },
   },
+  extraReducers: {},
 });
 
 export const { setFullName, setEmail, setPassword } = userSlice.actions;
