@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import useRouter from "../hooks/useRouter ";
-import trips from "../assets/data/trips.json";
+// import trips from "../assets/data/trips.json";
 import React from "react";
 import { Modal } from "../components/Modal";
+import { useSelector } from "react-redux";
 
 function TripPage({ createNewBooking }) {
   const { query, navigate } = useRouter();
@@ -17,7 +18,9 @@ function TripPage({ createNewBooking }) {
     setModalIsOpen(false);
   };
 
-  const trip = trips.find((el) => el.id === query.id);
+  const trip = useSelector((state) => state.trips.trip);
+
+  // const trip = trips.find((el) => el.id === query.id);
 
   useEffect(() => {
     if (!trip) {

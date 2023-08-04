@@ -3,38 +3,73 @@ import axios from "axios";
 
 const initialState = {
   trips: [],
+  trip: {},
+  status: null,
+  error: null,
 };
 
-export const getAllTrips = createAsyncThunk("trips/getAllTrips", async () => {
-  const res = await axios.get("https://binary-travel-app.xyz/api/v1/trips");
-  const data = await res.json();
+export const getAllTrips = createAsyncThunk(
+  "trips/getAllTrips",
+  async (_, { rejectWithValue }) => {
+    try {
+      const res = await axios.get("https://binary-travel-app.xyz/api/v1/trips");
 
-  return data;
-});
+      if (!res.ok) {
+        throw new Error("Server Error!");
+      }
 
-// export const getAllTrips = createAsyncThunk(
-//   "trips/getAllTrips",
-//   async (_, { rejectWithValue, dispatch }) => {
-//     const res = await axios.get("https://binary-travel-app.xyz/api/v1/trips");
-//     dispatch(setTrips(res.data));
-//   }
-// );
+      const data = await res.json();
+
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+export const getTrip = createAsyncThunk(
+  "trips/getTrip",
+  async (id, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await axios.get(
+        `https://binary-travel-app.xyz/api/v1/trips/${id}`
+      );
+
+      if (!response.ok) {
+        throw new Error("Can`t find trip. Server Error!");
+      }
+
+      dispatch(findTrip(id));
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const tripsSlice = createSlice({
   name: "trips",
   initialState,
   reducers: {
-    // setTrips: (state, action) => {
-    //   state.trips = action.payload;
-    // },
+    findTrip: (state, action) => {
+      state.trip = state.trips.find((el) => el.id === action.payload.id);
+    },
   },
   extraReducers: {
-    [getAllTrips.pending]: () => console.log("pending"),
-    [getAllTrips.rejected]: () => console.log("rejected"),
-    [getAllTrips.fulfilled]: (state, action) => (state.trips = action.payload),
+    [getAllTrips.pending]: (state) => {
+      state.status = "loading";
+      state.error = null;
+    },
+    [getAllTrips.rejected]: (state, action) => {
+      state.status = "rejected";
+      state.error = action.payload;
+    },
+    [getAllTrips.fulfilled]: (state, action) => {
+      state.status = "resolved";
+      state.trips = action.payload;
+    },
   },
 });
 
-export const { setTrips } = tripsSlice.actions;
+export const { findTrip } = tripsSlice.actions;
 
 export default tripsSlice.reducer;

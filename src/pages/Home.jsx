@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Filtration } from "../components/Filtration";
 import { TripCard } from "../components/cards/TripCard";
-// import trips from "../assets/data/trips.json";
 import { useEffect, useState } from "react";
 import { getAllTrips } from "../redux/slices/tripsSlice";
 
@@ -12,7 +11,8 @@ function Home() {
 
   const dispatch = useDispatch();
 
-  const trips = useSelector((state) => state.trips.trips);
+  const trips = useSelector((state) => state.trips.trips); //==========================
+  const { status, error } = useSelector((state) => state.trips); //=======================
 
   useEffect(() => {
     dispatch(getAllTrips());
@@ -50,28 +50,38 @@ function Home() {
   return (
     <main>
       <h1 className="visually-hidden">Travel App</h1>
-      <Filtration
-        {...{
-          setSearchInput,
-          searchInput,
-          duration,
-          setDuration,
-          level,
-          setLevel,
-        }}
-      />
-      <section className="trips">
-        <h2 className="visually-hidden">Trips List</h2>
-        <ul className="trip-list">
-          {trips
-            ?.filter((el) => tripSearch(searchInput, el))
-            .filter((el) => filterDuration(duration, el))
-            .filter((el) => filterLevel(level, el))
-            .map((el) => (
-              <TripCard key={el.id} {...el} />
-            ))}
-        </ul>
-      </section>
+      {status === "loading" ? (
+        <div className="nav-header__inner">
+          <div className="loader"></div>
+        </div>
+      ) : error ? (
+        <h2 className="nav-header__inner">🫣 An error ocured: {error}</h2>
+      ) : (
+        <>
+          <Filtration
+            {...{
+              setSearchInput,
+              searchInput,
+              duration,
+              setDuration,
+              level,
+              setLevel,
+            }}
+          />
+          <section className="trips">
+            <h2 className="visually-hidden">Trips List</h2>
+            <ul className="trip-list">
+              {trips
+                ?.filter((el) => tripSearch(searchInput, el))
+                .filter((el) => filterDuration(duration, el))
+                .filter((el) => filterLevel(level, el))
+                .map((el) => (
+                  <TripCard key={el.id} {...el} />
+                ))}
+            </ul>
+          </section>
+        </>
+      )}
     </main>
   );
 }
