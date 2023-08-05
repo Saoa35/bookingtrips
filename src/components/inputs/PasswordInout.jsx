@@ -1,9 +1,4 @@
-import { useDispatch } from "react-redux";
-import { setPassword } from "../../redux/slices/userSlice";
-
-export const PasswordInput = () => {
-  const dispatch = useDispatch();
-
+export const PasswordInput = ({ password, setPassword }) => {
   return (
     <label className="input">
       <span className="input__heading">Password</span>
@@ -12,7 +7,8 @@ export const PasswordInput = () => {
         name="password"
         type="password"
         autoComplete="new-password"
-        onChange={(e) => dispatch(setPassword(e.target.value))}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
         required
       />
     </label>

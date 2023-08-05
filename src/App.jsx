@@ -1,18 +1,34 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Header } from "./components/common/Header";
 import Home from "./pages/Home";
 import Registration from "./pages/Registration";
 import LogIn from "./pages/LogIn";
 import Bookings from "./pages/Bookings";
 import { Footer } from "./components/common/Footer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TripPage from "./pages/TripPage";
 import bookings from "./assets/data/bookings.json";
+import { useDispatch, useSelector } from "react-redux";
+import { checkAuth, getUser } from "./redux/slices/userSlice";
 
 function App() {
-  const [isAuth, setIsAuth] = useState(true);
+  const isAuth = useSelector(checkAuth);
+
+  const navigate = useNavigate();
+
+  // const dispatch = useDispatch();
 
   const [bookingList, setBookingList] = useState(bookings);
+
+  // dispatch(getUser());
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/");
+    } else {
+      navigate("/sign-in");
+    }
+  }, [isAuth, navigate]);
 
   const createNewBooking = (
     booking,
@@ -33,7 +49,7 @@ function App() {
 
   return (
     <>
-      <Header isAuth={isAuth} setIsAuth={setIsAuth} />
+      <Header />
 
       <Routes>
         <Route path="/" element={isAuth ? <Home /> : <LogIn />} />

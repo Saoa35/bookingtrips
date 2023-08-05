@@ -1,10 +1,22 @@
 import { Link } from "react-router-dom";
 import briefcase from "../../assets/images/briefcase.svg";
 import user from "../../assets/images/user.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { checkAuth, loginUser } from "../../redux/slices/userSlice";
 
-export const Header = ({ isAuth, setIsAuth }) => {
-  const userName = useSelector((state) => state.user.fullName);
+export const Header = () => {
+  const userName = useSelector((state) => state.user.user);
+
+  console.log(userName);
+
+  const isAuth = useSelector(checkAuth);
+
+  const dispatch = useDispatch();
+
+  const logoutClick = () => {
+    dispatch(loginUser());
+    window.localStorage.removeItem("token");
+  };
 
   return (
     <header className="header">
@@ -48,7 +60,7 @@ export const Header = ({ isAuth, setIsAuth }) => {
                         to="sign-in"
                         data-test-id="header-profile-nav-sign-out"
                         className="profile-nav__sign-out button"
-                        onClick={() => setIsAuth(false)}
+                        onClick={logoutClick}
                       >
                         Sign Out
                       </Link>
