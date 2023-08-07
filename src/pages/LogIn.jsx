@@ -2,17 +2,25 @@ import { Link, useNavigate } from "react-router-dom";
 import { PasswordInput } from "../components/inputs/PasswordInout";
 import { EmailInput } from "../components/inputs/EmailInput";
 import { SubmitButton } from "../components/SubmitButton";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { loginUser } from "../redux/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { checkAuth, loginUser } from "../redux/slices/userSlice";
 
 function LogIn() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
+  const isAuth = useSelector(checkAuth);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/");
+    }
+  }, [isAuth, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();

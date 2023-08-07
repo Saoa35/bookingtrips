@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import { Header } from "./components/common/Header";
 import Home from "./pages/Home";
 import Registration from "./pages/Registration";
@@ -14,21 +14,13 @@ import { checkAuth, getUser } from "./redux/slices/userSlice";
 function App() {
   const isAuth = useSelector(checkAuth);
 
-  const navigate = useNavigate();
-
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const [bookingList, setBookingList] = useState(bookings);
 
-  // dispatch(getUser());
-
   useEffect(() => {
-    if (isAuth) {
-      navigate("/");
-    } else {
-      navigate("/sign-in");
-    }
-  }, [isAuth, navigate]);
+    dispatch(getUser());
+  }, [dispatch]);
 
   const createNewBooking = (
     booking,

@@ -47,17 +47,17 @@ export const loginUser = createAsyncThunk("user/loginUser", async (body) => {
   }
 });
 
-// export const getUser = createAsyncThunk("user/getUser", async () => {
-//   try {
-//     const { data } = await axios.get(
-//       "https://binary-travel-app.xyz/api/v1/auth/authenticated-user"
-//     );
+export const getUser = createAsyncThunk("user/getUser", async () => {
+  try {
+    const { data } = await axios.get(
+      "https://binary-travel-app.xyz/api/v1/auth/authenticated-user"
+    );
 
-//     return data;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 const userSlice = createSlice({
   name: "user",
@@ -78,7 +78,7 @@ const userSlice = createSlice({
     [registerUser.fulfilled]: (state, action) => {
       state.loading = false;
       state.status = "OK";
-      state.user = action.payload.user.fullName;
+      state.user = action.payload?.user.fullName;
       state.token = action.payload.token;
     },
     [registerUser.rejected]: (state) => {
@@ -93,7 +93,7 @@ const userSlice = createSlice({
     [loginUser.fulfilled]: (state, action) => {
       state.loading = false;
       state.status = "OK";
-      state.user = action.payload.user.fullName;
+      state.user = action.payload?.user.fullName;
       state.token = action.payload?.token;
     },
     [loginUser.rejected]: (state) => {
@@ -101,20 +101,22 @@ const userSlice = createSlice({
       state.loading = false;
     },
 
-    // [getUser.pending]: (state) => {
-    //   state.loading = true;
-    //   state.status = null;
-    // },
-    // [getUser.fulfilled]: (state, action) => {
-    //   state.loading = false;
-    //   state.status = null;
-    //   state.user = action.payload?.user;
-    //   state.token = action.payload?.token;
-    // },
-    // [getUser.rejected]: (state) => {
-    //   console.log("rejected");
-    //   state.loading = false;
-    // },
+    [getUser.pending]: (state) => {
+      state.loading = true;
+      state.status = null;
+      console.log("pending");
+    },
+    [getUser.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.status = null;
+      state.user = action.payload?.user;
+      state.token = action.payload?.token;
+      console.log("fulfilled");
+    },
+    [getUser.rejected]: (state) => {
+      console.log("rejected");
+      state.loading = false;
+    },
   },
 });
 

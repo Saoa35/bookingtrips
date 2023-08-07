@@ -3,18 +3,26 @@ import { EmailInput } from "../components/inputs/EmailInput";
 import { PasswordInput } from "../components/inputs/PasswordInout";
 import { SubmitButton } from "../components/SubmitButton";
 import { UserNameInput } from "../components/inputs/UserNameInput";
-import { useDispatch } from "react-redux";
-import { useState } from "react";
-import { registerUser } from "../redux/slices/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { checkAuth, registerUser } from "../redux/slices/userSlice";
 
 function Registration() {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
 
+  const isAuth = useSelector(checkAuth);
+
   const [fullName, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate("/");
+    }
+  }, [isAuth, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
